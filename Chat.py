@@ -56,11 +56,14 @@ def area_chat():
 #Generar repuesta (voy a capturar la respuesta del modelo)
 def generar_respuesta(chat_completo):
     respuesta_completa = ""
-    for frase in chat_completo:
-        if frase.choices[0].delta.content:
-            respuesta_completa += frase.choices[0].delta.content
-            yield frase.choices[0].delta.content
+    for chunk in chat_completo:
+        delta = chunk.choices[0].delta
+        if hasattr(delta, "content") and delta.content:
+            respuesta_completa += delta.content
+            yield delta.content
     return respuesta_completa
+
+
 
 
 def main():
