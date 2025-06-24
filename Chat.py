@@ -57,9 +57,9 @@ def area_chat():
 def generar_respuesta(chat_completo):
     respuesta_completa = ""
     for frase in chat_completo:
-        if frase.choice[0].delta.content:
-            respuesta_completa += frase.choice[0].delta.content
-            yield frase.choice[0].delta.content
+        if frase.choices[0].delta.content:
+            respuesta_completa += frase.choices[0].delta.content
+            yield frase.choices[0].delta.content
     return respuesta_completa
 
 
